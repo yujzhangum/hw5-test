@@ -124,11 +124,11 @@ class TestCard(unittest.TestCase):
 
         '''
         c7 = hw5_cards.Deck()
-        self.assertEqual(c7.deal_card().__str__(), ('King of Spades'))
+        self.assertIsInstance(c7.deal_card(), hw5_cards.Card)
         
     
         
-        return c7.deal_card().__str__(), ('King of Spades')
+        return c7.deal_card(), hw5_cards.Card
     
     def test_q6(self):
         '''
@@ -144,11 +144,13 @@ class TestCard(unittest.TestCase):
 
         '''
         c8 = hw5_cards.Deck()
-        list = []
-        list.append(c8.deal_card())
-        self.assertEqual(len(list),1)
+        before_deal_card = len(c8.cards)
+        c8.deal_card()
+        after_deal_card = len(c8.cards)
+
+        self.assertEqual(after_deal_card,before_deal_card-1)
         
-        return len(list),1
+        return after_deal_card,before_deal_card-1
     
 
     def test_q7(self):
